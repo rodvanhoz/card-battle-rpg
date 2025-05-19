@@ -26,6 +26,8 @@ from pathlib import Path
 from typing import List, Optional, Callable
 
 SAVE_FILE = Path("save.json")
+ABILITY_CATALOG: dict[str, "Ability"] = {}
+HERO_CFG: dict = {}
 
 # ------------------------------
 # 1.  Cartas
@@ -140,6 +142,13 @@ def kaioken(attacker: "Character", _):
 # 3.  Personagens
 # ------------------------------
 
+def maybe_learn_skills(char: "Character") -> None:
+    learned = {ab.name for ab in char.abilities}
+    for skill, req_lvl in HERO_CFG["learn"].items():
+        if char.level >= req_lvl and skill not in learned:
+            char.abilities.append(ABILITY_CATALOG[skill])
+            type_out(f"✨ {char.name} aprendeu {skill}!")
+
 @dataclass
 class Character:
     name: str
@@ -228,15 +237,6 @@ class Character:
             self.level_up()
             needed = 100 * self.level
 
-    def maybe_learn_skills(char: "Character",
-                        hero_cfg: dict,
-                        catalog: dict[str, Ability]):
-        learned = {ab.name for ab in char.abilities}
-        for skill, req_lvl in hero_cfg["learn"].items():
-            if char.level >= req_lvl and skill not in learned:
-                char.abilities.append(catalog[skill])
-                type_out(f"✨ {char.name} aprendeu {skill}!")
-
     def level_up(self):
         self.level += 1
         self.power_level = int(self.power_level * random.uniform(1.15, 1.20))
@@ -244,7 +244,7 @@ class Character:
         self.max_ki = int(self.max_ki * 1.05)
         self.hp, self.ki = self.max_hp, self.max_ki
         print(f"⬆️  {self.name} subiu para nível {self.level}! PL agora {self.power_level}.")
-        maybe_learn_skills(self, HERO_CFG, ability_catalog)
+        maybe_learn_skills(self)
 
     # ----- Serialização -----
     def to_dict(self):
@@ -349,7 +349,10 @@ def battle(player: Player, enemy: Player):
 
         elif p_choice == "a":
             ability = pick_ability(player.char)
-            if ability and player.char.spend_ki(ability.ki_cost):
+            if ability is None:
+                rnd -= 1
+                continue    # volta ao início do loop sem perder o turno
+            if player.char.spend_ki(ability.ki_cost):
                 ability.effect(player.char, enemy.char)
 
         elif p_choice == "t":
@@ -527,11 +530,16 @@ def pick_ability(char: Character) -> Optional[Ability]:
     if not char.abilities:
         print("(sem habilidades)")
         return None
-    for i, ab in enumerate(char.abilities):
-        print(f" {i+1}. {ab.name} (Ki {ab.ki_cost}) – {ab.desc}")
+
+    print(" 0. Voltar")
+    for i, ab in enumerate(char.abilities, 1):
+        print(f" {i}. {ab.name} (Ki {ab.ki_cost}) – {ab.desc}")
+
     try:
-        idx = int(input("Habilidade: ")) - 1
-        return char.abilities[idx]
+        choice = int(input("Habilidade: "))
+        if choice == 0:
+            return None
+        return char.abilities[choice-1]
     except (ValueError, IndexError):
         print("Inválido")
         return None
@@ -815,25 +823,27 @@ def amistoso_menu(creatures: dict[int, Character]):
     auto_battle(a, b)
 
 def main():
-    ability_catalog = {
+    global ABILITY_CATALOG, HERO_CFG
+
+    ABILITY_CATALOG = {
         "Onda de Ki": Ability("Onda de Ki", 40, "Explosão de energia", ki_wave),
         "Cura":       Ability("Cura", 30, "Recupera HP", heal),
         "Kaioken":    Ability("Kaioken", 0, "Aumenta PL (custa Ki por turno)", kaioken),
     }
 
-    # -------- carregamos a configuração do herói uma ÚNICA vez --------
-    global HERO_CFG
     HERO_CFG = load_hero_config()
 
-    creatures = load_creatures(ability_catalog)
+    creatures = load_creatures(ABILITY_CATALOG)
     worlds    = load_worlds()
 
-    hero = load_game(ability_catalog)
+    hero = load_game(ABILITY_CATALOG)
     if not hero:
         print("=== NOVA AVENTURA ===")
         name = input("Nome do herói: ") or "Herói"
         hero = Character(name=name, abilities=[])
-        maybe_learn_skills(hero, HERO_CFG, ability_catalog)   # adiciona golpes que já pode
+        maybe_learn_skills(hero)
+    else:
+        maybe_learn_skills(hero)
 
 
     while True:
