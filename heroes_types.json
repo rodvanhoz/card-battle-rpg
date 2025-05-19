@@ -1,0 +1,37 @@
+{
+  "types": {
+    "Human": {
+      "learn": {
+        "Onda de Ki": 1,
+        "Cura": 5,
+        "Kaioken": 20
+      },
+
+      "transformations": [
+        {
+          "required": null,
+          "level_enabled": 30,
+          "name": "Super Human",
+          "multipliers": {
+            "power_level": 5.0,
+            "hp":          2.0,
+            "ki":          2.0
+          },
+          "terminated_at": 0.10
+        },
+
+        {
+          "required": "Super Human",
+          "level_enabled": 30,
+          "name": "Super Human 2",
+          "multipliers": {
+            "power_level": 2.0,
+            "hp":          1.10,
+            "ki":          1.10
+          },
+          "terminated_at": 0.15
+        }
+      ]
+    }
+  }
+}

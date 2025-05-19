@@ -1,0 +1,137 @@
+{
+  "monsters": [
+    {
+      "id": 1,
+      "name": "Grimmen",
+      "level": 1,
+      "power_level": 1000,
+      "max_hp": 200,
+      "max_ki": 50,
+      "abilities": []
+    },
+    {
+      "id": 2,
+      "name": "Saibaimen",
+      "level": 1,
+      "power_level": 1200,
+      "max_hp": 200,
+      "max_ki": 50,
+      "abilities": [
+        "Cura"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Slug",
+      "level": 2,
+      "power_level": 1700,
+      "max_hp": 200,
+      "max_ki": 50,
+      "abilities": [
+        "Cura"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Raditz",
+      "level": 2,
+      "power_level": 1500,
+      "max_hp": 400,
+      "max_ki": 150,
+      "abilities": [
+        "Onda de Ki",
+        "Cura"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Nappa",
+      "level": 10,
+      "power_level": 4000,
+      "max_hp": 700,
+      "max_ki": 200,
+      "abilities": [
+        "Onda de Ki",
+        "Cura"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Vegeta",
+      "level": 20,
+      "power_level": 18000,
+      "max_hp": 1200,
+      "max_ki": 300,
+      "abilities": [
+        "Onda de Ki"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Zarb",
+      "level": 16,
+      "power_level": 15000,
+      "max_hp": 400,
+      "max_ki": 200,
+      "abilities": [
+        "Cura"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Dodo",
+      "level": 16,
+      "power_level": 15000,
+      "max_hp": 500,
+      "max_ki": 150,
+      "abilities": [
+        "Cura"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Dodoria",
+      "level": 22,
+      "power_level": 21000,
+      "max_hp": 1400,
+      "max_ki": 500,
+      "abilities": [
+        "Cura"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Bugy",
+      "level": 12,
+      "power_level": 5600,
+      "max_hp": 280,
+      "max_ki": 80,
+      "abilities": [
+        "Onda de Ki"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Namek",
+      "level": 12,
+      "power_level": 6000,
+      "max_hp": 270,
+      "max_ki": 100,
+      "abilities": [
+        "Onda de Ki"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Kakaroto>8k",
+      "level": 12,
+      "power_level": 4100,
+      "max_hp": 970,
+      "max_ki": 270,
+      "abilities": [
+        "Onda de Ki",
+        "kaioken:2:7"
+      ]
+    }        
+  ]
+}

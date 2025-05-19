@@ -1,0 +1,62 @@
+{
+  "worlds": [
+    {
+      "name": "welt eins",
+      "creatures": [
+        {
+          "creature_id": 1,
+          "type": "normal"
+        },
+        {
+          "creature_id": 2,
+          "type": "normal"
+        },
+        {
+          "creature_id": 71,
+          "type": "boss"
+        },
+        {
+          "creature_id": 3,
+          "type": "normal"
+        },
+        {
+          "creature_id": 72,
+          "type": "boss"
+        },
+        {
+          "creature_id": 8,
+          "type": "normal``"
+        },
+        {
+          "creature_id": 9,
+          "type": "normal"
+        },
+        {
+          "creature_id": 73,
+          "type": "boss"
+        }
+      ]
+    },
+    {
+      "name": "Zukunft",
+      "creatures": [
+        {
+          "creature_id": 4,
+          "type": "normal"
+        },
+        {
+          "creature_id": 5,
+          "type": "normal"
+        },
+        {
+          "creature_id": 6,
+          "type": "boss"
+        },
+        {
+          "creature_id": 7,
+          "type": "normal"
+        }
+      ]
+    }
+  ]
+}
