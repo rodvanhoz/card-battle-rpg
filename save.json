@@ -1,10 +1,13 @@
 {
   "name": "H\u00e4rte",
-  "level": 91,
-  "power_level": 7443,
-  "max_hp": 700,
-  "max_ki": 226,
-  "abilities": [],
+  "level": 10,
+  "power_level": 10760,
+  "max_hp": 735,
+  "max_ki": 237,
+  "abilities": [
+    "Onda de Ki",
+    "Cura"
+  ],
   "backpack": [
     "Po\u00e7\u00e3o de Cura",
     "Po\u00e7\u00e3o de Cura",
@@ -13,11 +16,11 @@
     "Po\u00e7\u00e3o de Cura",
     "Po\u00e7\u00e3o de Cura",
     "Po\u00e7\u00e3o de Cura",
-    "Elixir de Poder",
     "Po\u00e7\u00e3o de Cura",
     "Po\u00e7\u00e3o de Cura",
     "Po\u00e7\u00e3o de Cura",
-    "Elixir de Poder"
+    "Po\u00e7\u00e3o de Cura",
+    "Po\u00e7\u00e3o de Cura"
   ],
-  "exp": 672
+  "exp": 271
 }
